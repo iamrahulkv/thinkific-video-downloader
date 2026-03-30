@@ -1,6 +1,6 @@
 # Thinkific Video Auto-Downloader
 
-A Chrome extension that **automatically downloads all video lessons** from a Thinkific course in sequence — fully hands-free, no manual clicking required.
+A Chrome extension that **automatically downloads all video lessons** from any playlist in sequence — fully hands-free, no manual clicking required.
 
 > Works like [Video DownloadHelper](https://www.downloadhelper.net/) but fully automated: intercepts Wistia HLS network requests at the browser level and converts them to direct MP4 downloads.
 
