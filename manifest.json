@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "Thinkific Video Auto-Downloader",
+  "version": "6.0.0",
+  "description": "Intercepts Wistia HLS network requests at browser level to auto-download all course videos in sequence.",
+  "permissions": [
+    "downloads",
+    "scripting",
+    "storage",
+    "tabs",
+    "activeTab",
+    "webRequest",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://*.thinkific.com/*",
+    "https://*.wistia.com/*",
+    "https://*.wistia.net/*",
+    "https://embed-cloudfront.wistia.com/*",
+    "https://embed-ssl.wistia.com/*",
+    "https://fast.wistia.com/*",
+    "https://*.vimeo.com/*",
+    "https://*.vimeocdn.com/*",
+    "https://*.bunnycdn.com/*",
+    "https://*.b-cdn.net/*",
+    "https://*.mediadelivery.net/*",
+    "https://*.cloudfront.net/*",
+    "https://*.amazonaws.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.thinkific.com/courses/take/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

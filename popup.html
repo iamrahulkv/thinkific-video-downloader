@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Thinkific DL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="popup.css"/>
+</head>
+<body>
+<div class="app">
+
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">⬇</div>
+      <div>
+        <div class="logo-name">THINKIFIC<em>DL</em></div>
+        <div class="logo-sub">Auto Downloader · v7</div>
+      </div>
+    </div>
+    <div class="pill" id="pill">IDLE</div>
+  </header>
+
+  <!-- ⚠ Save-prompt warning (shown if Chrome setting is wrong) -->
+  <div class="save-warn hidden" id="saveWarn">
+    <div class="save-warn__icon">⚠</div>
+    <div>
+      <strong>Chrome will prompt on every download!</strong>
+      <div>Turn this off: <code>chrome://settings/downloads</code> → disable <em>"Ask where to save"</em></div>
+      <a class="fix-link" id="btnFixSetting" href="#">Open Chrome Download Settings →</a>
+    </div>
+    <button class="warn-close" id="btnCloseWarn">✕</button>
+  </div>
+
+  <main class="main">
+
+    <!-- ── DETECT ─────────────────────────────────────────────────── -->
+    <section id="vDetect" class="view active">
+      <div class="card">
+        <div class="clabel">HOW TO USE</div>
+        <ol class="steps">
+          <li>Log in and open your Thinkific course tab</li>
+          <li>Click <strong>Scan Curriculum</strong> below</li>
+          <li>Review the lesson list, then click <strong>Start Download</strong></li>
+          <li>Videos save automatically as <code>001_Lesson_Title.mp4</code></li>
+        </ol>
+      </div>
+      <button class="btn primary full" id="btnScan">🔍 &nbsp;Scan Curriculum</button>
+      <div class="alert err hidden" id="errScan"></div>
+    </section>
+
+    <!-- ── COURSE ─────────────────────────────────────────────────── -->
+    <section id="vCourse" class="view">
+      <div class="course-card">
+        <div class="clabel">COURSE DETECTED</div>
+        <div class="course-title" id="cTitle">—</div>
+        <div class="course-meta" id="cMeta">—</div>
+      </div>
+
+      <div class="folder-row">
+        <span class="folder-icon">📁</span>
+        <span class="folder-path" id="folderPath">Downloads/…</span>
+      </div>
+
+      <div class="scroller"><div id="lessonList"></div></div>
+
+      <div class="row">
+        <button class="btn ghost" id="btnRescan">↺ Re-scan</button>
+        <button class="btn primary" id="btnStart">▶ Start Download</button>
+      </div>
+    </section>
+
+    <!-- ── DOWNLOADING ────────────────────────────────────────────── -->
+    <section id="vDl" class="view">
+
+      <!-- Progress header -->
+      <div class="dl-top">
+        <div style="min-width:0;flex:1">
+          <div class="clabel" id="dlLabel">DOWNLOADING</div>
+          <div class="dl-lesson" id="dlLesson">—</div>
+        </div>
+        <div class="dl-count" id="dlCount">0/0</div>
+      </div>
+
+      <div class="prog-track"><div class="prog-bar" id="progBar"></div></div>
+
+      <!-- Current file being saved -->
+      <div class="current-file" id="currentFile">
+        <span class="cf-dot" id="cfDot"></span>
+        <span id="cfText">Intercepting network…</span>
+      </div>
+
+      <!-- Pause / Stop buttons — BIG AND CLEAR -->
+      <div class="ctrl-row">
+        <button class="ctrl-btn pause" id="btnPause">
+          <span class="ctrl-icon" id="pauseIcon">⏸</span>
+          <span id="pauseLabel">Pause</span>
+        </button>
+        <button class="ctrl-btn stop" id="btnStop">
+          <span class="ctrl-icon">⏹</span>
+          <span>Stop</span>
+        </button>
+      </div>
+
+      <!-- Log -->
+      <div class="logbox"><div id="log"></div></div>
+
+    </section>
+
+    <!-- ── DONE ───────────────────────────────────────────────────── -->
+    <section id="vDone" class="view">
+      <div class="done">
+        <div class="done-check">✓</div>
+        <div class="done-title">All Done!</div>
+        <div class="done-meta" id="doneMeta">0 videos</div>
+        <div class="done-folder" id="doneFolder">—</div>
+      </div>
+      <div class="errbox hidden" id="errBox">
+        <div class="errbox-title">⚠ Issues</div>
+        <div id="errList"></div>
+      </div>
+      <button class="btn primary full" id="btnReset">↩ Download Another Course</button>
+    </section>
+
+  </main>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>
